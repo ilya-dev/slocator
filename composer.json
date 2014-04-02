@@ -1,0 +1,23 @@
+{
+    "name": "ilya/slocator",
+    "description": "The Service Locator Pattern implementation with Little",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ilya S",
+            "email": "public.ilya.s@gmail.com"
+        }
+    ],
+    "require": {
+        "ilya/little": "~1",
+        "mockery/mockery": "~0.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slocator\\": "src/"
+        }
+    }
+}

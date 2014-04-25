@@ -1,26 +1,27 @@
 <?php namespace Slocator;
 
 use Slocator\Contracts\ContainerContract;
-use Mockery, Mockery\MockInterface;
+use Mockery;
+use Mockery\MockInterface;
 
 abstract class Slocator {
 
     /**
-     * The container instance
+     * The container instance.
      *
-     * @var Slocator\Contracts\ContainerContract
+     * @var Contracts\ContainerContract
      */
     protected static $container;
 
     /**
-     * Mocked instances
+     * The mocked instances.
      *
      * @var array
      */
     protected static $mocks = [];
 
     /**
-     * Resolve the underlying class instance
+     * Resolve the underlying class instance.
      *
      * @return mixed
      */
@@ -37,9 +38,9 @@ abstract class Slocator {
     }
 
     /**
-     * Get the binding key
+     * Get the binding key.
      *
-     * @throws BadMethodCallException
+     * @throws \BadMethodCallException
      * @return string
      */
     public static function getBindingKey()
@@ -48,29 +49,29 @@ abstract class Slocator {
     }
 
     /**
-     * Replace the underlying instance with a mock object
+     * Replace the underlying instance with a mock object.
      *
      * @return void
      */
     public static function replaceWithMock()
     {
-        $class = get_class(static::getInstance());
+        $class = \get_class(static::getInstance());
 
         static::$mocks[static::getBindingKey()] = Mockery::mock($class);
     }
 
     /**
-     * Determine whether the underlying instance is a mock
+     * Determine whether the underlying instance is a mock.
      *
      * @return boolean
      */
     public static function isMock()
     {
-        return static::getInstance() instanceof MockInterface;
+        return (static::getInstance() instanceof MockInterface);
     }
 
     /**
-     * Replace the mock object with the original instance
+     * Replace the mock object with the original instance.
      *
      * @return void
      */
@@ -80,9 +81,9 @@ abstract class Slocator {
     }
 
     /**
-     * Set the container instance
+     * Set the container instance.
      *
-     * @param  Slocator\Contracts\ContainerContract $container
+     * @param Contracts\ContainerContract $container
      * @return void
      */
     public static function setContainer(ContainerContract $container)
@@ -91,9 +92,9 @@ abstract class Slocator {
     }
 
     /**
-     * Get the container instance
+     * Get the container instance.
      *
-     * @return Slocator\Contracts\ContainerContract
+     * @return Contracts\ContainerContract
      */
     public static function getContainer()
     {
@@ -101,17 +102,17 @@ abstract class Slocator {
     }
 
     /**
-     * Handle dynamic method calls
+     * Handle dynamic method calls.
      *
-     * @param  string $method
-     * @param  array  $arguments
+     * @param string $method
+     * @param array $arguments
      * @return mixed
      */
     public static function __callStatic($method, array $arguments)
     {
         $callable = [static::getInstance(), $method];
 
-        return call_user_func_array($callable, $arguments);
+        return \call_user_func_array($callable, $arguments);
     }
 
 }

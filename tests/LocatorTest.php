@@ -2,11 +2,6 @@
 
 class LocatorTest extends PHPUnit_Framework_TestCase {
 
-    /**
-     * This method gets fired after each test runs
-     *
-     * @return void
-     */
     protected function tearDown()
     {
         Mockery::close();
@@ -109,7 +104,7 @@ class LocatorTest extends PHPUnit_Framework_TestCase {
 class Locator extends Slocator\Slocator {
 
     /**
-     * Get the binding key
+     * Get the binding key.
      *
      * @return string
      */
